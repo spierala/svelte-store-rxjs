@@ -2,5 +2,167 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "svelte-store-rxjs": {
+      "projectType": "library",
+      "root": "projects/svelte-store-rxjs",
+      "sourceRoot": "projects/svelte-store-rxjs/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/svelte-store-rxjs/tsconfig.lib.json",
+            "project": "projects/svelte-store-rxjs/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/svelte-store-rxjs/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/svelte-store-rxjs/src/test.ts",
+            "tsConfig": "projects/svelte-store-rxjs/tsconfig.spec.json",
+            "karmaConfig": "projects/svelte-store-rxjs/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/svelte-store-rxjs/tsconfig.lib.json",
+              "projects/svelte-store-rxjs/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "svelte-store-rxjs-showcase": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/svelte-store-rxjs-showcase",
+      "sourceRoot": "projects/svelte-store-rxjs-showcase/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/svelte-store-rxjs-showcase",
+            "index": "projects/svelte-store-rxjs-showcase/src/index.html",
+            "main": "projects/svelte-store-rxjs-showcase/src/main.ts",
+            "polyfills": "projects/svelte-store-rxjs-showcase/src/polyfills.ts",
+            "tsConfig": "projects/svelte-store-rxjs-showcase/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/svelte-store-rxjs-showcase/src/favicon.ico",
+              "projects/svelte-store-rxjs-showcase/src/assets"
+            ],
+            "styles": [
+              "projects/svelte-store-rxjs-showcase/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/svelte-store-rxjs-showcase/src/environments/environment.ts",
+                  "with": "projects/svelte-store-rxjs-showcase/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "svelte-store-rxjs-showcase:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "svelte-store-rxjs-showcase:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "svelte-store-rxjs-showcase:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/svelte-store-rxjs-showcase/src/test.ts",
+            "polyfills": "projects/svelte-store-rxjs-showcase/src/polyfills.ts",
+            "tsConfig": "projects/svelte-store-rxjs-showcase/tsconfig.spec.json",
+            "karmaConfig": "projects/svelte-store-rxjs-showcase/karma.conf.js",
+            "assets": [
+              "projects/svelte-store-rxjs-showcase/src/favicon.ico",
+              "projects/svelte-store-rxjs-showcase/src/assets"
+            ],
+            "styles": [
+              "projects/svelte-store-rxjs-showcase/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/svelte-store-rxjs-showcase/tsconfig.app.json",
+              "projects/svelte-store-rxjs-showcase/tsconfig.spec.json",
+              "projects/svelte-store-rxjs-showcase/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/svelte-store-rxjs-showcase/e2e/protractor.conf.js",
+            "devServerTarget": "svelte-store-rxjs-showcase:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "svelte-store-rxjs-showcase:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "svelte-store-rxjs"
 }
