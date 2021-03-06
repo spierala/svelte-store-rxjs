@@ -13,7 +13,7 @@ export interface IWritable<T> extends Observable<T> {
 }
 
 // Based on "SvelteSubject" https://github.com/ReactiveX/rxjs/issues/4740#issuecomment-490601347
-class Writable<T> extends BehaviorSubject<T> implements IWritable<T> {
+export class Writable<T> extends BehaviorSubject<T> implements IWritable<T> {
   constructor(initialValue: T) {
     super(initialValue);
   }
@@ -52,17 +52,17 @@ type Stores = Observable<any> | [Observable<any>, ...Array<Observable<any>>];
 export function derived<T>(
   stores: Stores,
   fn: Function,
-  initial_value?: T
+  initial_value?: T // TODO
 ): Observable<T> {
   const single = !Array.isArray(stores);
-  const stores_array: Array<Observable<any>> = single
+  const storesArray: Array<Observable<any>> = single
     ? [stores as Observable<any>]
     : (stores as Array<Observable<any>>);
 
-  return combineLatest(stores_array).pipe(
+  return combineLatest(storesArray).pipe(
     distinctUntilChanged((prev, curr) =>
       prev.every((prevItem, i) => prevItem === curr[i])
     ),
-    map(stores => fn(stores))
+    map(values => fn(single ? values[0] : values))
   );
 }
