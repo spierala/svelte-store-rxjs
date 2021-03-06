@@ -33,8 +33,9 @@ abSummed.pipe(
 ```
 Readable, writable, derived are true RxJS Observables.
 
-### FYI
-`Writable` extends RxJS BehaviorSubject.
+## RxJS
+- `writable()` returns a `Writable` instance. `Writable` extends RxJS BehaviorSubject.
+- `readable()` and `derived()` return a RxJS Observable
 
 ## References
 - [Svelte store github](https://github.com/sveltejs/svelte/blob/master/src/runtime/store/index.ts)
