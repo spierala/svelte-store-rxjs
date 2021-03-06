@@ -1,6 +1,6 @@
-# Svelte Store Rxjs
+# Svelte Store RxJS
 
-**Svelte Store Rxjs** provides [Svelte Stores](https://svelte.dev/docs#svelte_store) (**readable**, **writable**, **derived**) as true [RxJS](https://github.com/ReactiveX/rxjs) Observables.
+**Svelte Store RxJS** provides [Svelte Stores](https://svelte.dev/docs#svelte_store) (**readable**, **writable**, **derived**) as [RxJS](https://github.com/ReactiveX/rxjs) Observables.
  
 Example:
 
