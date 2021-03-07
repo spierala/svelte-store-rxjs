@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "ng build svelte-store-rxjs --prod",
+    "build:lib": "ng build svelte-store-rxjs --prod && copy LICENSE dist/svelte-store-rxjs && copy README.md dist/svelte-store-rxjs",
     "test:svelte-store-rxjs": "ng test svelte-store-rxjs",
     "test:svelte-store-rxjs:github": "ng test svelte-store-rxjs --watch=false --browsers=ChromeHeadless"
   },
@@ -35,6 +35,7 @@
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "codelyzer": "^5.1.2",
+    "copy": "^0.3.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~5.0.0",

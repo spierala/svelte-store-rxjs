@@ -37,9 +37,8 @@ abSummed.pipe(
   filter((num: number) => num % 2 === 0)
 ).subscribe(sum => console.log('RxJS pipe result', sum))
 ```
-Readable, writable, derived are true RxJS Observables.
-
 ## RxJS
+Readable, writable, derived are true RxJS Observables.
 - `writable()` returns a `Writable` instance. `Writable` extends RxJS BehaviorSubject.
 - `readable()` and `derived()` return a RxJS Observable
 

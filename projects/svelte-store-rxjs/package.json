@@ -1,6 +1,6 @@
 {
   "name": "svelte-store-rxjs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Florian Spier <mail@florian-spier.be> (https://florian-spier.be)",
   "peerDependencies": {
     "rxjs": ">= 6.4.0 < 7"
