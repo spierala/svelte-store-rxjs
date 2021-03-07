@@ -1,24 +1,43 @@
-# SvelteStoreRxjs
+# Svelte Store RxJS
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.13.
+**Svelte Store RxJS** provides [Svelte Stores](https://svelte.dev/docs#svelte_store) (**readable**, **writable**, **derived**) as [RxJS](https://github.com/ReactiveX/rxjs) Observables.
 
-## Code scaffolding
+Example:
 
-Run `ng generate component component-name --project svelte-store-rxjs` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project svelte-store-rxjs`.
-> Note: Don't forget to add `--project svelte-store-rxjs` or else it will be added to the default project in your `angular.json` file. 
+```ts
+import { derived, readable, Writable, writable } from 'svelte-store-rxjs';
+import { filter } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
-## Build
+// Writable
+const a: Writable<number> = writable<number>(1);
+a.subscribe(a => console.log('writable', a));
+a.set(2);
+a.update(state => state + 1);
 
-Run `ng build svelte-store-rxjs` to build the project. The build artifacts will be stored in the `dist/` directory.
+// Readable
+const b: Observable<number> = readable<number>(12);
+b.subscribe(b => console.log('readable', b));
 
-## Publishing
+// Derived
+const abSummed: Observable<number> = derived([a, b], ([a, b]) => {
+  return a + b;
+});
+abSummed.subscribe(abSummed => console.log('summed', abSummed));
 
-After building your library with `ng build svelte-store-rxjs`, go to the dist folder `cd dist/svelte-store-rxjs` and run `npm publish`.
+// All stores are true RxJS Observables, we can have RxJS fun with more than 100 RxJS operators :)
+abSummed.pipe(
+  // Filter out non-even numbers
+  filter((num: number) => num % 2 === 0)
+).subscribe(sum => console.log('RxJS pipe result', sum))
+```
+Readable, writable, derived are true RxJS Observables.
 
-## Running unit tests
+## RxJS
+- `writable()` returns a `Writable` instance. `Writable` extends RxJS BehaviorSubject.
+- `readable()` and `derived()` return a RxJS Observable
 
-Run `ng test svelte-store-rxjs` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## References
+- [Svelte store github](https://github.com/sveltejs/svelte/blob/master/src/runtime/store/index.ts)
+- [Svelte store API docs](https://svelte.dev/docs#svelte_store)
+- [RxJS Github issue about "SvelteSubject"](https://github.com/ReactiveX/rxjs/issues/4740#issuecomment-490601347)
