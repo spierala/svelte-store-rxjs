@@ -4,6 +4,11 @@ import { distinctUntilChanged, map } from "rxjs/operators";
 // Svelte store github: https://github.com/sveltejs/svelte/blob/master/src/runtime/store/index.ts
 // Svelte store API docs: https://svelte.dev/docs#svelte_store
 
+function safe_not_equal(a, b) {
+  // tslint:disable-next-line:triple-equals
+  return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
+}
+
 type Updater<T> = (value: T) => T;
 
 export interface IWritable<T> extends Observable<T> {
@@ -19,7 +24,7 @@ export class Writable<T> extends BehaviorSubject<T> implements IWritable<T> {
   }
 
   set(value: T): void {
-    if (value !== this.getValue()) {
+    if (safe_not_equal(value, this.getValue())) {
       super.next(value);
     }
   }
