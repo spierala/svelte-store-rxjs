@@ -1,9 +1,27 @@
 {
   "name": "svelte-store-rxjs",
   "version": "0.0.1",
+  "author": "Florian Spier <mail@florian-spier.be> (https://florian-spier.be)",
   "peerDependencies": {
-    "@angular/common": "^9.1.13",
-    "@angular/core": "^9.1.13"
+    "rxjs": ">= 6.4.0 < 7"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/spierala/svelte-store-rxjs",
+  "readme": "https://github.com/spierala/svelte-store-rxjs/blob/master/README.md",
+  "description": "Svelte Store RxJS: Svelte Stores (readable, writable, derived) as RxJS Observables",
+  "keywords": [
+    "RxJS",
+    "Svelte",
+    "State Management",
+    "Observable",
+    "Store"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spierala/svelte-store-rxjs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/spierala/svelte-store-rxjs/issues"
   },
   "dependencies": {
     "tslib": "^1.10.0"

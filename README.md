@@ -1,7 +1,13 @@
+[![NPM](https://img.shields.io/npm/v/svelte-store-rxjs)](https://www.npmjs.com/package/svelte-store-rxjs)
+[![Tests](https://github.com/spierala/svelte-store-rxjs/actions/workflows/nodejs.yml/badge.svg)](https://github.com/spierala/svelte-store-rxjs/actions/workflows/nodejs.yml)
+
 # Svelte Store RxJS
 
 **Svelte Store RxJS** provides [Svelte Stores](https://svelte.dev/docs#svelte_store) (**readable**, **writable**, **derived**) as [RxJS](https://github.com/ReactiveX/rxjs) Observables.
- 
+
+| WARNING: This project is still experimental! Do not use in production! |
+| --- |
+
 Example:
 
 ```ts
