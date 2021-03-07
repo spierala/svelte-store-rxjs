@@ -8,8 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:all": "ng build svelte-store-rxjs --prod && ng build svelte-store-rxjs-showcase --prod",
-    "test:svelte-store-rxjs": "ng test svelte-store-rxjs"
+    "build:lib": "ng build svelte-store-rxjs --prod",
+    "test:svelte-store-rxjs": "ng test svelte-store-rxjs",
+    "test:svelte-store-rxjs:github": "ng test svelte-store-rxjs --watch=false --browsers=ChromeHeadless"
   },
   "private": true,
   "dependencies": {
